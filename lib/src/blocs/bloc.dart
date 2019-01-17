@@ -1,16 +1,14 @@
 import 'dart:async';
 
 class Bloc {
-  final _emailController = StreamController<String>(); // _ for private
-  final passwordController = StreamController<String>();
+  final _email = StreamController<String>(); // _ for private
+  final _password = StreamController<String>();
 
-  Function(String) get changeEmail => _emailController.sink.add;
-}
+  // Add data to stream
+  Stream<String> get email => _email.stream;
+  Stream<String> get password => _password.stream;
 
-void main() {
-  final bloc = Bloc();
-
-  bloc._emailController.sink.add('aaa');
-
-  bloc.changeEmail('');
+  // Change data
+  Function(String) get changeEmail => _email.sink.add;
+  Function(String) get changePassword => _password.sink.add;
 }
